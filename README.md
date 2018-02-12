@@ -125,7 +125,7 @@ This should give you a basic idea about the algorithm being implemented by this 
 
 # Considerations
 
-Because of the limitation of the Javascript engine, setTimeout, setInterval and other timers are allowed to lag 
+Because of the limitations of the Javascript engine, setTimeout, setInterval and other timers are allowed to lag 
 arbitrarily and are not guaranteed to run at exact time. They tend to drift and delays due to CPU load are expected to 
 happen. 
 
