@@ -8,6 +8,7 @@ const params = {
     interval: 10000, // 10 seconds
     threshold: 3,
     delay: 1000, // 1 second
+    promisify: true,
 };
 
 const rLimiter = rateLimiter(Object.assign({}, params));

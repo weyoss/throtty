@@ -12,6 +12,17 @@ chai.use(sinonChai);
 module.exports = (title, rLimiter) => {
 
     describe(title, function() {
+        it('Make sure promisify is working. Expect first roll to be allowed.', function () {
+            this.timeout(100000);
+            const id = uuid();
+            return rLimiter.checkRateAsync(id).then((r) => {
+                expect(r.allowed).to.eq(true);
+                expect(r.details.delayViolation).to.eq(false);
+                expect(r.details.thresholdViolation).to.eq(false);
+                expect(r.details.wait).to.eq(0);
+            });
+        });
+
         it('Run 4 rolls with a delay of one second. Expect 4th roll to be not allowed due to threshold violation.', function (done) {
             this.timeout(100000);
             const id = uuid();

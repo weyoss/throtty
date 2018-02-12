@@ -27,23 +27,48 @@ const rateLimiter = throtty({
     interval: 10000, // Required. Rolling windows in milliseconds.
     threshold: 3, // Required. How many times per rolling window?
     delay: 1000, // Required. Minimum delay between two successive requests in milliseconds.
-    redis: redisClient // Optional. Redis client. If not provided In-memory storage is used. 
+    redis: redisClient, // Optional. Redis client. If not provided In-memory storage is used.
+    promisify: true, // Optional. When true, `checkRateAsync` will be the promisified version of `checkRate`.
 });
 
+// using callback
 rateLimiter.checkRate('user-1234-some-action', function(err, res) {
     if (err) {
         // handle error
-        
+
     }  else {
         if (res.allowed) {
             // accepted request
-            
+
         } else {
             // reject request
-            
+
         }
     }
 })
+
+// using promise when promisify parameter is set to true
+rateLimiter.checkRateAsync('user-1234-some-action')
+    .then((res) => {
+        if (res.allowed) {
+            // accepted request
+
+        } else {
+            // reject request
+
+        }
+    }).catch((err) => {
+        // error handling
+
+    });
+
+// using throtty as a rate limiter middleware (in KOA)
+app.use(async rateLimit(ctx, next) => {
+    const res = await rateLimiter.checkRateAsync('user-1234-some-action');
+    if (res.allowed) return next();
+    throw new TooManyRequestsError();
+})
+
 ````
 
 ## Advanced usage
@@ -125,11 +150,11 @@ This should give you a basic idea about the algorithm being implemented by this 
 
 # Considerations
 
-Because of the limitations of the Javascript engine, setTimeout, setInterval and other timers are allowed to lag 
+Because of the limitations of the Javascript engine, setTimeout and setInterval timers are allowed to lag
 arbitrarily and are not guaranteed to run at exact time. They tend to drift and delays due to CPU load are expected to 
 happen. 
 
-Considering that sometimes even when the rate limiter asks to wait for certain amount of time, it is not 
+Considering that, sometimes even when the rate limiter asks to wait for certain amount of time, it is not
 guaranteed that this timing will be fulfilled. Therefore `details.wait` provided by this package in callbacks can be 
 considered only as an estimation and can not be exact.
 

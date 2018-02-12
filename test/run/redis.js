@@ -20,6 +20,7 @@ const params = {
     threshold: 3,
     delay: 1000, // 1 second
     redis: client,
+    promisify: true,
 };
 
 const rLimiter = rateLimiter(Object.assign({}, params));

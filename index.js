@@ -1,5 +1,6 @@
 'use strict';
 
+const bluebird = require('bluebird');
 const InMemoryRateLimiter = require('./src/memory');
 const RedisRateLimiter = require('./src/redis');
 
@@ -13,8 +14,9 @@ const RedisRateLimiter = require('./src/redis');
  * @returns {*}
  */
 function throtty(options) {
-    if (options.hasOwnProperty('redis')) return new RedisRateLimiter(options);
-    return new InMemoryRateLimiter(options);
+    const RateLimiter = options.hasOwnProperty('redis') ? RedisRateLimiter : InMemoryRateLimiter;
+    if (options.hasOwnProperty('promisify') && options.promisify === true) bluebird.promisifyAll(RateLimiter.prototype);
+    return new RateLimiter(options);
 }
 
 module.exports = throtty;
