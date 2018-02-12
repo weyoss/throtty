@@ -1,7 +1,7 @@
 {
   "name": "throtty",
   "description": "Yet another rolling window rate limiter.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "dependencies": {
     "bluebird": "3.5.1",
