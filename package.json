@@ -1,0 +1,47 @@
+{
+  "name": "throtty",
+  "description": "Yet another rolling window rate limiter.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "microtime": "2.1.7"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "eslint": "3.15.0",
+    "eslint-config-airbnb-base": "11.1.0",
+    "eslint-config-google": "0.7.1",
+    "eslint-config-standard": "6.2.1",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-promise": "3.4.1",
+    "eslint-plugin-standard": "2.0.1",
+    "mocha": "3.2.0",
+    "redis": "2.8.0",
+    "redis-mock": "0.21.0",
+    "sinon": "1.17.7",
+    "sinon-chai": "2.11.0",
+    "uuid": "3.2.1"
+  },
+  "scripts": {
+    "test": "eslint src/*.js && NODE_ENV=test mocha --reporter spec test/run/*.js",
+    "lint": "eslint src/monitor/assets src/*.js",
+    "fix": "eslint src/monitor/assets src --fix"
+  },
+  "author": "Weyoss <weyoss@protonmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "rate",
+    "limiter",
+    "redis",
+    "rolling",
+    "throttle"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weyoss/throtty.git"
+  },
+  "homepage": "https://github.com/weyoss/throtty",
+  "bugs": {
+    "url": "https://github.com/weyoss/throtty/issues"
+  }
+}
