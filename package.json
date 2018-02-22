@@ -32,10 +32,15 @@
   "license": "MIT",
   "keywords": [
     "rate",
-    "limiter",
-    "redis",
+    "limiting",
+    "throttling",
+    "throttle",
+    "ratelimiter",
+    "ratelimit",
     "rolling",
-    "throttle"
+    "sliding",
+    "window",
+    "redis"
   ],
   "repository": {
     "type": "git",
