@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bluebird": "3.5.1",
-    "microtime": "2.1.7"
+    "microtime": "3.0.0"
   },
   "devDependencies": {
     "chai": "3.5.0",
@@ -16,7 +16,7 @@
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-promise": "3.4.1",
     "eslint-plugin-standard": "2.0.1",
-    "mocha": "3.2.0",
+    "mocha": "^6.0.2",
     "redis": "2.8.0",
     "redis-mock": "0.21.0",
     "sinon": "1.17.7",

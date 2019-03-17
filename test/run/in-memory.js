@@ -1,7 +1,6 @@
 'use strict';
 
 const sinon = require('sinon');
-const rateLimiter = require('../../index');
 const commonTests = require('../common/tests');
 
 const params = {
@@ -11,5 +10,4 @@ const params = {
     promisify: true,
 };
 
-const rLimiter = rateLimiter(Object.assign({}, params));
-commonTests(`In-memory rate limiter tests [interval: ${params.interval}, threshold: ${params.threshold}, delay: ${params.delay}]:`, rLimiter);
+commonTests('In-memory rate limiter', params);
